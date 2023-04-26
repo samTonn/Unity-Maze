@@ -1,0 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class mover : MonoBehaviour
+{
+
+    /*[SerializeField] float xValue = -0.01f;
+    [SerializeField] float yValue = 0f;
+    [SerializeField] float zValue = -0.01f;*/
+    float speed = 500;
+    public Rigidbody rigidbody;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+        //rigidbody.useGravity = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        move();
+    }
+    
+
+    void move()
+    {
+        //rigidbody.AddRelativeForce(Vector3.forward * speed);
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            rigidbody.AddRelativeForce(Vector3.forward * speed);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            rigidbody.AddRelativeForce(Vector3.back * speed);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            rigidbody.AddRelativeForce(Vector3.left * speed);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            rigidbody.AddRelativeForce(Vector3.right * speed);
+        }
+
+        /*float xValue = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        float zValue = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        transform.Translate(xValue, 0, zValue);*/
+
+    }
+
+
+}
