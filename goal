@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class goal : MonoBehaviour
+{
+    float startPos = 0;
+    float yPos = 0;
+
+    void Start()
+    {
+        startPos = transform.position.y;
+        Debug.Log(startPos);
+    }
+
+
+    private void onCollisionStay(Collision other)
+    {
+        Debug.Log("HEllo");
+        if (yPos <10)
+        {
+            transform.Translate(0, 1f, 0);
+            yPos += 0.1f;
+        }
+    }
+    private void onCollisionExit(Collision other)
+    {
+        transform.Translate(0, -startPos, 0);
+        yPos = 0;
+    }
+
+}
