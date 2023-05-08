@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Hail : MonoBehaviour
+{
+    //make this the isTripped form trip script
+    [SerializeField] bool isTripped;
+
+    MeshRenderer renderer;
+    Rigidbody rigidbody;
+    float timeToWait = 5f;
+
+    void Start()
+    {
+        renderer = GetComponent<MeshRenderer>();
+        rigidbody = GetComponent<Rigidbody>();
+        renderer.enabled = false;
+        rigidbody.useGravity = false;
+    }
+
+    void Update()
+    {
+        if (isTripped)
+        {
+            renderer.enabled = true;
+            rigidbody.useGravity = true;
+        }
+    }
+}
