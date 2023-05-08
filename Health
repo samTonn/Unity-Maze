@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Unity.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class Health : MonoBehaviour
+{
+    int currentHealth = 5;
+    public TextMeshProUGUI HealthText;
+
+    private void Awake()
+    {
+        HealthText.text = ("Health: " + currentHealth).ToString();
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "safeFromHit" || other.gameObject.tag == "Coin")
+        {
+            return;
+        }
+        else
+        {
+            currentHealth--;
+            HealthText.text = ("Health: " + currentHealth).ToString();
+        }
+    }
+}
