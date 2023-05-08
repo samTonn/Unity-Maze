@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Unity.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class coinPickup : MonoBehaviour
+{
+    public int coinValue = 0;
+    public int totalValue = 0;
+
+    private Dictionary<string, int> coins = new Dictionary<string, int>();
+
+    int currentScore = 0;
+    public TextMeshProUGUI ScoreText;
+
+
+    void Start()
+    {
+        coins.Add("gold", 10);
+        coins.Add("silver", 5);
+        coins.Add("copper", 1);
+        ScoreText.text = ("Score: " + currentScore).ToString();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+
+        if (other.gameObject.tag == "Coin")
+        {
+            string coinType = other.gameObject.name.ToLower();
+
+            if (coins.ContainsKey(coinType))
+            {
+                coinValue = coins[coinType];
+                currentScore += coinValue;
+                //Debug.Log(coinValue);
+                //Debug.Log(currentScore);
+                ScoreText.text = ("Score: " + currentScore).ToString();
+            }
+            
+            Destroy(other.gameObject);
+        }
+        
+    }
+}
